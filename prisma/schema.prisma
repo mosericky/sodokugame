@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model GameSave {
+  id          String   @id @default(cuid())
+  difficulty  String
+  initialGrid String
+  solution    String
+  currentGrid String
+  notes       String
+  seconds     Int
+  won         Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Score {
+  id          String   @id @default(cuid())
+  difficulty  String
+  seconds     Int
+  completedAt DateTime @default(now())
+}
